@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\Pengajuan;
 
 class PengajuanController extends Controller
 {
@@ -46,12 +48,11 @@ class PengajuanController extends Controller
             'status_pengajuan' => 'required'
         ]);
 
-        Http::withHeaders([
-            'Content-Type' => 'application/json'
-        ])->post("http://localhost:8080/pengajuan", $validated);
+        Http::post('http://localhost:8080/pengajuan', $validated);
 
         return redirect('/pengajuan')->with('success', 'Data berhasil ditambahkan');
     }
+
     /**
      * Display the specified resource.
      */
@@ -108,4 +109,14 @@ class PengajuanController extends Controller
 
         return redirect('/pengajuan')->with('success', 'Data berhasil dihapus');
     }
+
+    public function exportPDF()
+{
+    $response = Http::get('http://localhost:8080/pengajuan');
+    $data = $response->json(); // ambil data array dari API
+
+    $pdf = Pdf::loadView('pengajuan.pdfPengajuan', ['pengajuan' => $data]);
+
+    return $pdf->download('pengajuan_mahasiswa.pdf');
+}
 }

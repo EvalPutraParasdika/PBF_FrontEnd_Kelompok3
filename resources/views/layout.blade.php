@@ -198,7 +198,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables @yield('judul')</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Table @yield('judul')</h1>
                     <!-- DataTales Example -->
                     <div id="content">
                       <main>

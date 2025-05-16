@@ -33,3 +33,8 @@ Route::resource('prodi', ProdiController::class);
 // Routes PEngajuan
 
 Route::resource('pengajuan', PengajuanController::class);
+
+// Routes Export PDF
+Route::get('/export-mahasiswa-pdf', [PengajuanController::class, 'exportPDF']);
+
+

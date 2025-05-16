@@ -27,9 +27,10 @@
     <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah">
       + Tambah Pengajuan
     </button>
-    <a href="{{ url('/export-mahasiswa-pdf') }}"
-                            class="btn btn-outline-warning mb-3 float-right mr-3 shadow"><i
-                                class="fas fa-download mr-2"></i>PDF</a>
+    <a href="{{ url('/export-mahasiswa-pdf') }}" class="btn btn-outline-warning mb-3 float-right mr-3 shadow">
+      <i class="fas fa-download mr-2"></i>PDF
+  </a>
+  
     </div>
     <div class="card-body">
     <div class="table-responsive">
@@ -166,7 +167,7 @@
     </div>
     </div>
   </div>
-  <!-- Modal Tambah Mahasiswa -->
+  <!-- Modal Tambah Pengajuan -->
   <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
@@ -226,7 +227,7 @@
           </div>
           <div class="form-group">
           <label>Status Pengajuan</label>
-          <select name="status_pengajuan" class="form-control" disabled>
+          <select name="status_pengajuan" class="form-control" @readonly(true)>
           <option value="menunggu" {{ $pngj['status_pengajuan'] == 'Menunggu' ? 'selected' : '' }}>
           Menunggu</option>
           </select>

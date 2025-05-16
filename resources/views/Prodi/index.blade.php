@@ -23,7 +23,6 @@
             </div>
         @endif
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             <!-- Tombol buka modal tambah -->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah">
                 + Tambah Prodi

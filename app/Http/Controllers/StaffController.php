@@ -40,7 +40,7 @@ class StaffController extends Controller
 
         Http::post('http://localhost:8080/staff', $validated);
 
-        return redirect('/Staff')->with('success', 'Data berhasil ditambahkan');
+        return redirect('/staff')->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
