@@ -46,7 +46,9 @@ class PengajuanController extends Controller
             'status_pengajuan' => 'required'
         ]);
 
-        Http::post('http://localhost:8080/pengajuan', $validated);
+        Http::withHeaders([
+            'Content-Type' => 'application/json'
+        ])->post("http://localhost:8080/pengajuan", $validated);
 
         return redirect('/pengajuan')->with('success', 'Data berhasil ditambahkan');
     }
