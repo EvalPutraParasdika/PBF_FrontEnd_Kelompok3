@@ -20,7 +20,7 @@ class MahasiswaController extends Controller
 
         return view('mahasiswa.index', [
             'mahasiswa' => $dataMhs['data_mahasiswa'],
-            'prodi' => $dataProdi['data_prodi'] // sesuaikan dengan struktur JSON dari API-mu
+            'prodi' => $dataProdi['data_prodi'] 
         ]);
     }
 

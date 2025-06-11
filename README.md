@@ -19,8 +19,6 @@ Repositori ini merupakan bagian dari proyek akhir mata kuliah Pemrograman Berbas
 
 -   [Laravel](https://laravel.com/) - Framework PHP 
 -   [Bootstrap](https://getbootstrap.com/) - Framework CSS untuk desain responsif
--   [Vite](https://vitejs.dev/) - Build tool modern untuk frontend
--   [Axios](https://axios-http.com/) - Library HTTP client untuk komunikasi dengan API
 
 ## Instalasi
 
