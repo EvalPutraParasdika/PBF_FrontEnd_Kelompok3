@@ -19,7 +19,7 @@
         @if (session('error'))
             <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert"
                 style="background: rgba(220, 53, 69, 0.2); border: 1px solid rgba(220, 53, 69, 0.5); color: #721c24;">
-                {{ session('error') }}
+                {{ session('error') }}  
             </div>
         @endif
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -35,10 +35,7 @@
                         <tr>
                             <th>NIM</th>
                             <th>Nama</th>
-                            <th>Kelas</th>
-                            <th>Semester</th>
-                            <th>Status</th>
-                            <th>Nama Prodi</th>
+                            <th>Kelas ID</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,15 +43,15 @@
                         @foreach ($mahasiswa as $mhs)
                             <tr>
                                 <!-- Modal Edit Mahasiswa -->
-                                <div class="modal fade" id="modalEdit{{ $mhs['NIM'] }}" tabindex="-1"
-                                    aria-labelledby="modalEditLabel{{ $mhs['NIM'] }}" aria-hidden="true">
+                                <div class="modal fade" id="modalEdit{{ $mhs['nim'] }}" tabindex="-1"
+                                    aria-labelledby="modalEditLabel{{ $mhs['nim'] }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="{{ route('mahasiswa.update', $mhs['NIM']) }}" method="POST">
+                                            <form action="{{ route('mahasiswa.update', $mhs['id']) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalEditLabel{{ $mhs['NIM'] }}">Edit Mahasiswa
+                                                    <h5 class="modal-title" id="modalEditLabel{{ $mhs['nim'] }}">Edit Mahasiswa
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
                                                         <span aria-hidden="true">&times;</span>
@@ -63,8 +60,8 @@
                                                 <div class="modal-body">
                                                     <div class="form-group">
                                                         <label>NIM</label>
-                                                        <input type="text" name="NIM" class="form-control"
-                                                            value="{{ $mhs['NIM'] }}" required>
+                                                        <input type="text" name="nim" class="form-control"
+                                                            value="{{ $mhs['nim'] }}" required>
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Nama</label>
@@ -72,27 +69,10 @@
                                                             value="{{ $mhs['nama'] }}" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Kelas</label>
-                                                        <input type="kelas" name="kelas" class="form-control"
-                                                            value="{{ $mhs['kelas'] }}" required>
+                                                        <label>Kelas ID</label>
+                                                        <input type="text" name="kelas_id" class="form-control"
+                                                            value="{{ $mhs['kelas_id'] }}" required>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label>Semester</label>
-                                                        <input type="text" name="semester" class="form-control"
-                                                            value="{{ $mhs['semester'] }}" required>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Status</label>
-                                                        <input type="text" name="status" class="form-control"
-                                                            value="{{ $mhs['status'] }}" required>
-                                                    </div>
-                                                    <select name="id_prodi" class="form-control" required>
-                                                        @foreach ($prodi as $p)
-                                                            <option value="{{ $p['id_prodi'] }}" {{ $mhs['id_prodi'] == $p['id_prodi'] ? 'selected' : '' }}>
-                                                                {{ $p['nama'] }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-success">Update</button>
@@ -104,18 +84,15 @@
                                     </div>
                                 </div>
 
-                                <td>{{ $mhs['NIM'] }}</td>
+                                <td>{{ $mhs['nim'] }}</td>
                                 <td>{{ $mhs['nama'] }}</td>
-                                <td>{{ $mhs['kelas'] }}</td>
-                                <td>{{ $mhs['semester'] }}</td>
-                                <td>{{ $mhs['status'] }}</td>
-                                <td>{{ $mhs['nama_prodi'] }}</td>
+                                <td>{{ $mhs['kelas_id'] }}</td>
                                 <td>
                                     <!-- Tombol Edit -->
                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                        data-target="#modalEdit{{ $mhs['NIM'] }}">Edit</button>
+                                        data-target="#modalEdit{{ $mhs['nim'] }}">Edit</button>
 
-                                    <form action="{{ route('mahasiswa.destroy', $mhs['NIM']) }}" method="POST"
+                                    <form action="{{ route('mahasiswa.destroy', $mhs['id']) }}" method="POST"
                                         style="display:inline-block;"
                                         onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                         @csrf
@@ -145,31 +122,15 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>NIM</label>
-                            <input type="text" name="NIM" class="form-control" value="" required>
+                            <input type="text" name="nim" class="form-control" value="" required>
                         </div>
                         <div class="form-group">
                             <label>Nama</label>
                             <input type="text" name="nama" class="form-control" value="" required>
                         </div>
                         <div class="form-group">
-                            <label>Kelas</label>
-                            <input type="kelas" name="kelas" class="form-control" value="" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Semester</label>
-                            <input type="text" name="semester" class="form-control" value="" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Status</label>
-                            <input type="text" name="status" class="form-control" value="" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Prodi</label>
-                            <select name="id_prodi" class="form-control" required>
-                                @foreach ($prodi as $p)
-                                    <option value="{{ $p['id_prodi'] }}">{{ $p['nama'] }}</option>
-                                @endforeach
-                            </select>
+                            <label>Kelas ID</label>
+                            <input type="text" name="kelas_id" class="form-control" value="" required>
                         </div>
                     </div>
                     <div class="modal-footer">

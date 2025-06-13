@@ -90,30 +90,14 @@
                     <span>Mahasiswa</span></a>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('matakuliah.index') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Mata Kuliah</span></a>
+            </li>
+
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('staff.index') }}">
-                    <i class="fas fa-fw fa-user-tie"></i></i>
-                    <span>Staff</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('jurusan.index') }}">
-                    <i class="fas fa-fw fa-sitemap"></i>
-                    <span>Jurusan</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('prodi.index') }}">
-                    <i class="fas fa-fw fa-graduation-cap"></i>
-                    <span>Prodi</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('pengajuan.index') }}">
-                    <i class="fas fa-fw fa-paper-plane"></i>
-                    <span>Pengajuan</span></a>
-            </li>
-
+          
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

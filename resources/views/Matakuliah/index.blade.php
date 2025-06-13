@@ -1,8 +1,8 @@
 @extends('layout')
 
-@section('title', 'Staff')
+@section('title', 'matakuliah')
 
-@section('judul', 'Staff')
+@section('judul', 'matakuliah')
 
 
 @section('isi')
@@ -25,7 +25,7 @@
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <!-- Tombol buka modal tambah -->
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah">
-                + Tambah Staff
+                + Tambah Mata Kuliah
             </button>
         </div>
         <div class="card-body">
@@ -33,47 +33,45 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>NIP</th>
+                            <th>ID</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
+                            <th>Dosen ID</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($staff as $stf)
+                        @foreach ($matakuliah as $mtk)
                             <tr>
-                                <!-- Modal Edit staff -->
-                                <div class="modal fade" id="modalEdit{{ $stf['NIP'] }}" tabindex="-1"
-                                    aria-labelledby="modalEditLabel{{ $stf['NIP'] }}" aria-hidden="true">
+                                <!-- Modal Edit Dosen -->
+                                <div class="modal fade" id="modalEdit{{ $mtk['id'] }}" tabindex="-1"
+                                    aria-labelledby="modalEditLabel{{ $mtk['id'] }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
-                                            <form action="{{ route('staff.update', $stf['NIP']) }}" method="POST">
+                                            <form action="{{ route('matakuliah.update', $mtk['id']) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
+
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalEditLabel{{ $stf['NIP'] }}">Edit Staff
+                                                    <h5 class="modal-title" id="modalEditLabel{{ $mtk['id'] }}">Edit Matkul
                                                     </h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>NIP</label>
-                                                    <input type="text" name="NIP" class="form-control"
-                                                        value="{{ $stf['NIP'] }}" required>
-                                                </div>
+
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label>Nama</label>
-                                                        <input type="text" name="nama" class="form-control"
-                                                            value="{{ $stf['nama'] }}" required>
+                                                        <label for="nama{{ $mtk['id'] }}">Nama</label>
+                                                        <input type="text" name="nama" id="nama{{ $mtk['id'] }}"
+                                                            class="form-control" value="{{ $mtk['nama'] }}" required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label>Jabatan</label>
-                                                        <input type="jabatan" name="jabatan" class="form-control"
-                                                            value="{{ $stf['jabatan'] }}" required>
+                                                        <label for="dosen_id{{ $mtk['id'] }}">Dosen ID</label>
+                                                        <input type="text" name="dosen_id" id="dosen_id{{ $mtk['dosen_id'] }}"
+                                                            class="form-control" value="{{ $mtk['dosen_id'] }}" required>
                                                     </div>
                                                 </div>
+
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-success">Update</button>
                                                     <button type="button" class="btn btn-secondary"
@@ -84,15 +82,15 @@
                                     </div>
                                 </div>
 
-                                <td>{{ $stf['NIP'] }}</td>
-                                <td>{{ $stf['nama'] }}</td>
-                                <td>{{ $stf['jabatan'] }}</td>
+                                <td>{{ $mtk['id'] }}</td>
+                                <td>{{ $mtk['nama'] }}</td>
+                                <td>{{ $mtk['dosen_id'] }}</td>
                                 <td>
                                     <!-- Tombol Edit -->
                                     <button class="btn btn-sm btn-warning" data-toggle="modal"
-                                        data-target="#modalEdit{{ $stf['NIP'] }}">Edit</button>
+                                        data-target="#modalEdit{{ $mtk['id'] }}">Edit</button>
 
-                                    <form action="{{ route('staff.destroy', $stf['NIP']) }}" method="POST"
+                                    <form action="{{ route('matakuliah.destroy', $mtk['id']) }}" method="POST"
                                         style="display:inline-block;"
                                         onsubmit="return confirm('Yakin ingin menghapus data ini?');">
                                         @csrf
@@ -107,32 +105,30 @@
             </div>
         </div>
     </div>
-    <!-- Modal Tambah staff -->
+    <!-- Modal Tambah Dosen -->
     <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ route('staff.store') }}" method="POST">
+                <form action="{{ route('matakuliah.store') }}" method="POST">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTambahLabel">Tambah Staff</h5>
+                        <h5 class="modal-title" id="modalTambahLabel">Tambah Dosen</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>NIP</label>
-                            <input type="text" name="NIP" class="form-control" required>
+                            <label for="nama">Nama</label>
+                            <input type="text" name="nama" id="nama" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" name="nama" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>jabatan</label>
-                            <input type="text" name="jabatan" class="form-control" required>
+                            <label for="email">Dosen ID</label>
+                            <input type="text" name="dosen_id" id="dosen_id" class="form-control" required>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Simpan</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -141,6 +137,7 @@
             </div>
         </div>
     </div>
+
 
 @endsection
 <script>
